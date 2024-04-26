@@ -3,3 +3,28 @@
   margin: 0;
   padding: 0;
 }
+body {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  display: flex;
+  flex-flow: row wrap;
+  width: 484px;
+  height: 484px;
+  border: 2px black solid;
+}
+.flex {
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 0;
+  width: 100%;
+}
+.square {
+  /* border: 1px black dotted; */
+  flex-grow: 1;
+  flex-shrink: 0;
+}
