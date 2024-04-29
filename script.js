@@ -2,6 +2,7 @@ const container = document.querySelector(".main-container");
 const resetGrid = document.querySelector("#resetGrid");
 const changeGrid = document.querySelector("#changeGrid");
 const color = document.querySelector("#color");
+const randomiseColor = document.querySelector("#randomiseColor")
 let randomColorSelected = false;
 let colorSelected = color.value;
 let progressiveDarkening = false;
@@ -10,7 +11,9 @@ let gridSize = 16;
 const findSquareSize = (sideLenght) => {
     return Math.floor(480 / sideLenght);
 }
-
+randomiseColor.addEventListener("change", (e) => {
+    randomColorSelected = e.target.checked;
+})
 const fillContainer = (sideLenght = gridSize) => {
     if (container.childElementCount != 0) {
         clearContainer();
@@ -79,7 +82,7 @@ const randomRGB = () => {
 }
 
 const randomNumber = (maximum) => {
-    Math.floor(Math.random() * maximum + 1);
+    return Math.floor(Math.random() * maximum + 1);
 }
 const colorPickerWatcher = (e) => {
     colorSelected = e.target.value;
