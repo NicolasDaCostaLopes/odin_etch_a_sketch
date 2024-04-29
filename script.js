@@ -27,3 +27,11 @@ const fillContainer = (sideLenght) => {
 const clearContainer = () => {
     container.textContent = "";
 }
+
+const randomRGB = () => {
+    return `rgba(${randomNumber(255)}, ${randomNumber(255)}, ${randomNumber(255)})`;
+
+}
+
+const randomNumber = (maximum) =>
+    Math.floor(Math.random() * maximum + 1);
