@@ -1,8 +1,9 @@
 const container = document.querySelector(".main-container");
 const resetGrid = document.querySelector("#resetGrid");
 const changeGrid = document.querySelector("#changeGrid");
+const color = document.querySelector("#color");
 let randomColorSelected = false;
-let colorSelected = "rgb(147,124,10)";
+let colorSelected = color.value;
 let progressiveDarkening = false;
 let gridSize = 16;
 
@@ -80,6 +81,9 @@ const randomRGB = () => {
 const randomNumber = (maximum) => {
     Math.floor(Math.random() * maximum + 1);
 }
-
+const colorPickerWatcher = (e) => {
+    colorSelected = e.target.value;
+}
+color.addEventListener("input", colorPickerWatcher);
 
 fillContainer();
