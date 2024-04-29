@@ -1,13 +1,16 @@
 const container = document.querySelector(".main-container");
 const resetGrid = document.querySelector("#resetGrid");
 const changeGrid = document.querySelector("#changeGrid");
+let randomColorSelected = false;
+let colorSelected = "rgb(147,124,10)";
+let progressiveDarkening = false;
 let gridSize = 16;
 
 const findSquareSize = (sideLenght) => {
     return Math.floor(480 / sideLenght);
 }
 
-const fillContainer = (sideLenght) => {
+const fillContainer = (sideLenght = gridSize) => {
     if (container.childElementCount != 0) {
         clearContainer();
     }
@@ -31,9 +34,19 @@ const fillContainer = (sideLenght) => {
 const clearContainer = () => {
     container.textContent = "";
 }
+resetGrid.addEventListener("click", () => {
+    clearContainer();
+    fillContainer();
+})
 
 const hoverColor = (e) => {
-    e.target.style.backgroundColor = "rgba(255,0,0,0.3)";
+    if (randomColorSelected) {
+        e.target.style.backgroundColor = randomRGB();
+    } else { e.target.style.backgroundColor = colorSelected; }
+    if (progressiveDarkening) {
+        // TODO
+    }
+
 }
 
 const verifyProvidedGridSize = (input) => {
@@ -53,17 +66,20 @@ const askGridSize = () => {
         answer = prompt(`Invalid answer ${answer} is not from 4 up to 100`, 16);
         keepGoing = verifyProvidedGridSize(answer);
     }
-    fillContainer(gridSize);
+    fillContainer();
 }
-fillContainer(gridSize);
-askGridSize()
+changeGrid.addEventListener("click", askGridSize)
 
 
 
 const randomRGB = () => {
-    return `rgba(${randomNumber(255)}, ${randomNumber(255)}, ${randomNumber(255)})`;
+    return `rgb(${randomNumber(255)}, ${randomNumber(255)}, ${randomNumber(255)})`;
 
 }
 
-const randomNumber = (maximum) =>
+const randomNumber = (maximum) => {
     Math.floor(Math.random() * maximum + 1);
+}
+
+
+fillContainer();
