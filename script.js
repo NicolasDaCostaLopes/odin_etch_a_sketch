@@ -3,6 +3,7 @@ const resetGrid = document.querySelector("#resetGrid");
 const changeGrid = document.querySelector("#changeGrid");
 const color = document.querySelector("#color");
 const randomiseColor = document.querySelector("#randomiseColor")
+const darkening = document.querySelector("#darkening");
 let randomColorSelected = false;
 let colorSelected = color.value;
 let progressiveDarkening = false;
@@ -26,6 +27,7 @@ const fillContainer = (sideLenght = gridSize) => {
         for (x = 0; x < sideLenght; x++) {
             const square = document.createElement("div");
             square.classList.add("square");
+            square.dataset.darkening = 0;
             square.style.width = `${squareSize}px`
             square.style.height = `${squareSize}px`
             column.appendChild(square);
@@ -48,10 +50,20 @@ const hoverColor = (e) => {
         e.target.style.backgroundColor = randomRGB();
     } else { e.target.style.backgroundColor = colorSelected; }
     if (progressiveDarkening) {
-        // TODO
+        if (+e.target.dataset.darkening < 100) {
+            let opacity = e.target.dataset.darkening = +e.target.dataset.darkening + 10;
+            e.target.style.backgroundImage = `linear-gradient(rgba(0,0,0,${+opacity}%) 0 0)`;
+            console.log(e.target.style);
+        }
+    } else {
+        e.target.dataset.darkening = 0;
+        e.target.style.backgroundImage = "";
     }
 
 }
+darkening.addEventListener("change", (e) => {
+    progressiveDarkening = e.target.checked;
+})
 
 const verifyProvidedGridSize = (input) => {
     input = +input;
