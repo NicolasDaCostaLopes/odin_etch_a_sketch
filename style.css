@@ -29,3 +29,12 @@ body {
   flex-grow: 1;
   flex-shrink: 0;
 }
+.container {
+  display: flex;
+  justify-content: space-around;
+  width: 484px;
+  align-items: center;
+}
+#color {
+  height: 20px;
+}
