@@ -12,9 +12,6 @@ let gridSize = 16;
 const findSquareSize = (sideLenght) => {
     return Math.floor(480 / sideLenght);
 }
-randomiseColor.addEventListener("change", (e) => {
-    randomColorSelected = e.target.checked;
-})
 const fillContainer = (sideLenght = gridSize) => {
     if (container.childElementCount != 0) {
         clearContainer();
@@ -40,10 +37,6 @@ const fillContainer = (sideLenght = gridSize) => {
 const clearContainer = () => {
     container.textContent = "";
 }
-resetGrid.addEventListener("click", () => {
-    clearContainer();
-    fillContainer();
-})
 
 const hoverColor = (e) => {
     if (randomColorSelected) {
@@ -61,9 +54,6 @@ const hoverColor = (e) => {
     }
 
 }
-darkening.addEventListener("change", (e) => {
-    progressiveDarkening = e.target.checked;
-})
 
 const verifyProvidedGridSize = (input) => {
     input = +input;
@@ -84,9 +74,6 @@ const askGridSize = () => {
     }
     fillContainer();
 }
-changeGrid.addEventListener("click", askGridSize)
-
-
 
 const randomRGB = () => {
     return `rgb(${randomNumber(255)}, ${randomNumber(255)}, ${randomNumber(255)})`;
@@ -99,6 +86,22 @@ const randomNumber = (maximum) => {
 const colorPickerWatcher = (e) => {
     colorSelected = e.target.value;
 }
+
 color.addEventListener("input", colorPickerWatcher);
+
+changeGrid.addEventListener("click", askGridSize)
+
+darkening.addEventListener("change", (e) => {
+    progressiveDarkening = e.target.checked;
+})
+
+resetGrid.addEventListener("click", () => {
+    clearContainer();
+    fillContainer();
+})
+
+randomiseColor.addEventListener("change", (e) => {
+    randomColorSelected = e.target.checked;
+})
 
 fillContainer();
